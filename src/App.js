@@ -6,7 +6,7 @@ import ShoppingCart from "./ShoppingCart"
 export const ShoppingCartContext = createContext();
 
 function App() {
-  const [itemsInCart, updateCart] = useState([{id: "1", name: "Awesome thing", price: 9.99}])
+  const [itemsInCart, updateCart] = useState([])
   
   console.log("render", itemsInCart);
 
