@@ -8,13 +8,11 @@ export const ShoppingCartContext = createContext();
 function App() {
   const [itemsInCart, updateCart] = useState([])
   
-  console.log("render", itemsInCart);
-
   return (
     <ShoppingCartContext.Provider value={{itemsInCart, updateCart}}>
     <div className="App">
       <Products />
-      <ShoppingCart itemsInCart={itemsInCart}/>
+      <ShoppingCart />
     </div>
     </ShoppingCartContext.Provider>
   );

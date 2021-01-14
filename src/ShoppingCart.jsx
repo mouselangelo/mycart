@@ -5,7 +5,7 @@ import { ShoppingCartContext } from "./App";
 
 export default function Products () {
     const context = useContext(ShoppingCartContext);
-    const { updateCart, itemsInCart} = context;
+    const { itemsInCart, updateCart } = context;
 
     const groupedItems = itemsInCart.reduce((grouped, item) => {
         const groupedItem = grouped.find(groupedItem => (groupedItem.item.id === item.id))
@@ -18,6 +18,13 @@ export default function Products () {
         }
     }, []);
 
+    /* {
+        item: {id:....},
+        quantity: 1, //whatever
+        amount: xx.xx
+    }
+    */
+
     const hasItems = groupedItems && groupedItems.length > 0;
 
     const totalAmount = groupedItems.reduce((amount, item) => {
@@ -27,10 +34,10 @@ export default function Products () {
     return (
         <div>
             <h1>ShoppingCart</h1>
-            {hasItems ? groupedItems.map(({item, quantity}) => {
+            {hasItems ? groupedItems.map(({item, quantity, amount}) => {
                 return <div>
                 <p><b>{item.name}</b></p>
-                <p>${item.price} x {quantity} = ${item.price * (quantity)}</p>
+                <p>${item.price} x {quantity} = $ {amount}</p>
 
                 <button onClick={() => {
                     const remainingItems = itemsInCart.filter(cartItem => cartItem.id !== item.id);
@@ -44,7 +51,7 @@ export default function Products () {
             }
 
             {hasItems && <h5>Total {groupedItems.length} item(s)</h5>}
-            {hasItems && <h5>Total Amount: {totalAmount}</h5>}
+            {hasItems && <h5>Total Amount: $ {totalAmount}</h5>}
 
         </div>
     );

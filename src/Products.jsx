@@ -8,7 +8,7 @@ const items = [
 
 export default function Products () {
     const context = useContext(ShoppingCartContext);
-    const { updateCart, itemsInCart} = context;
+    const { itemsInCart, updateCart } = context;
 
     return (
         <div>
@@ -16,7 +16,7 @@ export default function Products () {
             {items.map(item => {
                 return <div>
                 <p><b>{item.name}</b></p>
-                <p>${item.price}</p>
+                <p>$ {item.price}</p>
                 <button onClick={() => {
                     updateCart([...itemsInCart, item]);
                 }}>Add to cart</button>
